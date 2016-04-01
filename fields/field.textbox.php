@@ -540,7 +540,12 @@
 		}
 
 		public function appendFormattedElement(XMLElement &$wrapper, $data, $encode = false, $mode = null, $entry_id = null) {
-			if(is_null($data['value'])) return;
+			if(is_null($data['value'])){
+				$wrapper->appendChild(new XMLElement(
+					$this->get('element_name')
+				));
+				return;
+			}
 
 			if ($mode == 'unformatted') {
 				$value = trim($data['value']);
